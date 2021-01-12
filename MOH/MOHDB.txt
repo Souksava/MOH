@@ -1,0 +1,29 @@
+create table ethnicity(eth_id int auto_increment primary key, eth_name varchar(250));
+
+create table nationality(nation_id int auto_increment primary key,nation_name varchar(50));
+
+create table section(sec_id int auto_increment primary key,sec_name varchar(250),village varchar(50),district varchar(50),province varchar(50));
+
+create table personality(per_id varchar(30) primary key,per_name varchar(50),per_surname varchar(50),gender varchar(10),
+dob date,tel varchar(50),address varchar(500),email varchar(100),per_type varchar(50),eth_id int,nation_id int,
+foreign key(eth_id) references ethnicity(eth_id),foreign key(nation_id) references nationality(nation_id));
+
+create table training(train_id int auto_increment primary key,place varchar(100),topic varchar(250),
+date_start date,date_end date,year varchar(15),amount decimal(11,2),region varchar(50),No_ varchar(30),quota_name varchar(250),note varchar(100),
+date_ date,time_ time,user_id int,user_edit varchar(50),foreign key(user_id) references username(user_id));
+);
+
+create table tranddetail(detail_id int auto_increment primary key,per_id varchar(30),train_id int,note varchar(50),
+foreign key(train_id) references training(train_id),foreign key(per_id) references personality(per_id));
+
+create table username(user_id int auto_increment primary key,user_name varchar(50),user_surname varchar(50),gender varchar(10),
+address varchar(100),tel varchar(30),email varchar(100),pass varchar(24),status int,foreign key(status) references status(status));
+
+create table listtranddetail(detail_id int auto_increment primary key,per_id varchar(30),user_id int,note varchar(50),
+foreign key(user_id) references username(user_id));
+
+create table certificate(cer_id int auto_increment primary key,cer_name varchar(100));
+
+create table certificate2(cer_id2 int auto_increment primary key,cer_name2 varchar(100));
+insert into training(train_id,place,topic,date_start,date_end,year,amount,region,No_,quota_name,note,date_,time_,user_id) values('8','ປະເທດໄທ','ເຂົ້າຮ່ວມອົບຮົມໃນຫົວຂໍ້: Physicians training workshop on hepatits B virus (HBV) and hepatits C virus (HCV) sreening, diagnosis and treatment','2019-12-02','2019-12-03','2019','0','ຕ່າງປະເທດ','0006','$quota_name','$note','2020-03-16','14:30:00','4');
+
